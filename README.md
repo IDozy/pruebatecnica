@@ -2,6 +2,9 @@ elimiminar type module del .packagejson
 set NODE_OPTIONS=--require dotenv/config && npx sequelize-cli db:migrate --config config/config.cjs
 colocar type:"module"
 
+npm run dev -> backend
+ng serve  -> frontend
+
 agregar .env
 DB_USER=""
 DB_PASS=""

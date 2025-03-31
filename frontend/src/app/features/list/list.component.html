@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Personajes</h2>
+
+    <!-- Botón para abrir el modal -->
+    <div class="d-flex justify-content-center mb-3">
+        <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#addCharacterModal">
+            ➕ Agregar Personaje
+        </button>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered text-center shadow-lg rounded">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Altura</th>
+                    <th>Masa</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let character of characters">
+                    <td>{{ character.name }}</td>
+                    <td>{{ character.height }} cm</td>
+                    <td>{{ character.mass }} kg</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Ver naves</button>
+                        <button class="btn btn-outline-danger btn-sm ms-2" (click)="deleteCharacter(character.id)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addCharacterModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true"
+    data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Agregar Nuevo Personaje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="newCharacter.name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="height" class="form-label">Altura (cm)</label>
+                        <input type="number" class="form-control" id="height" name="height" [(ngModel)]="newCharacter.height" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mass" class="form-label">Masa (kg)</label>
+                        <input type="number" class="form-control" id="mass" name="mass" [(ngModel)]="newCharacter.mass" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" (click)="saveCharacter()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
